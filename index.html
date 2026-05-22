@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lukka Deepak | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #050509;
+      --bg-alt: #101018;
+      --gold: #f4c430;
+      --gold-soft: #f4da7a;
+      --text: #f5f5f5;
+      --muted: #b0b0b0;
+      --accent: #2a2a3a;
+      --card-radius: 14px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.7);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #181820 0, #050509 45%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--gold-soft);
+      text-decoration: none;
+    }
+    a:hover {
+      color: var(--gold);
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 18px 60px;
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 24px 26px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #151520, #050509);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(244, 196, 48, 0.18);
+      position: sticky;
+      top: 16px;
+      z-index: 10;
+      backdrop-filter: blur(16px);
+    }
+
+    .name-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .name-block h1 {
+      font-size: 2.1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .tagline {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(244, 196, 48, 0.12);
+      color: var(--gold-soft);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .contact {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      font-size: 0.9rem;
+    }
+
+    .contact-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .contact-row span {
+      color: var(--muted);
+    }
+
+    .section {
+      margin-top: 32px;
+      padding: 24px 22px;
+      border-radius: var(--card-radius);
+      background: rgba(10, 10, 18, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.7);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .section-title h2 {
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+    }
+
+    .title-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold-soft), transparent);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 18px;
+    }
+
+    .about-text {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .key-facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    .fact-card {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: radial-gradient(circle at top left, rgba(244, 196, 48, 0.25), #050509);
+      border: 1px solid rgba(244, 196, 48, 0.3);
+    }
+
+    .fact-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold-soft);
+    }
+
+    .fact-value {
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .edu-item,
+    .proj-item,
+    .cert-item,
+    .test-item,
+    .comp-item {
+      padding: 12px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+    }
+    .edu-item:last-child,
+    .proj-item:last-child,
+    .cert-item:last-child,
+    .test-item:last-child,
+    .comp-item:last-child {
+      border-bottom: none;
+    }
+
+    .item-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+
+    .item-title {
+      font-weight: 600;
+      color: var(--gold-soft);
+    }
+
+    .item-meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .item-detail {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .badge {
+      font-size: 0.78rem;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(244, 196, 48, 0.35);
+      color: var(--gold-soft);
+      background: rgba(244, 196, 48, 0.07);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+    }
+
+    .skill-block {
+      background: var(--accent);
+      border-radius: 12px;
+      padding: 12px 13px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .skill-title {
+      font-size: 0.9rem;
+      color: var(--gold-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 6px;
+    }
+
+    .skill-list {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .language-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 24px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    @media (max-width: 720px) {
+      header {
+        position: static;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="name-block">
+        <span class="pill">B.Tech · Computer Science &amp; Engineering (Honours in FinTech)</span>
+        <h1>Lukka Deepak</h1>
+        <p class="tagline">Aspiring Front-End &amp; FinTech Engineer | Cloud &amp; Database Enthusiast</p>
+      </div>
+      <div class="contact">
+        <div class="contact-row">
+          <span>Email:</span><a href="mailto:dl0797@srmist.edu.in">dl0797@srmist.edu.in</a>
+        </div>
+        <div class="contact-row">
+          <span>Phone:</span><span>+91 94929 05898</span>
+        </div>
+        <div class="contact-row">
+          <span>Location:</span><span>Repalle, Bapatla district, Andhra Pradesh, India</span>
+        </div>
+        <div class="contact-row">
+          <span>Graduation:</span><span>2027 · CGPA 8.80 / 10</span>
+        </div>
+        <div class="contact-row">
+          <span>LinkedIn:</span>
+          <!-- Replace # with your real LinkedIn profile URL -->
+          <a href="#" target="_blank" rel="noopener">View profile</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- About -->
+    <section class="section">
+      <div class="section-title">
+        <h2>About</h2>
+        <div class="title-line"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I am a B.Tech Computer Science and Engineering student at
+            <strong>SRM Institute of Science and Technology, Trichy</strong>, with
+            an honours in <strong>FinTech</strong>. My interests lie at the
+            intersection of <strong>software engineering, finance, and cloud
+            technologies</strong>.
+          </p>
+          <p style="margin-top: 8px;">
+            Through academic projects, online certifications, and competitions,
+            I have built a foundation in <strong>front-end development</strong>,
+            <strong>database management</strong>, <strong>cloud &amp; DevOps
+            basics</strong>, and <strong>financial systems</strong>. I am
+            actively exploring opportunities in <strong>FinTech engineering,
+            investment banking, and operations/analytics roles</strong>.
+          </p>
+        </div>
+        <div class="key-facts">
+          <div class="fact-card">
+            <div class="fact-label">Degree</div>
+            <div class="fact-value">B.Tech CSE (Honours in FinTech)</div>
+          </div>
+          <div class="fact-card">
+            <div class="fact-label">Institute</div>
+            <div class="fact-value">SRM IST – Trichy</div>
+          </div>
+          <div class="fact-card">
+            <div class="fact-label">Graduation Year</div>
+            <div class="fact-value">2027</div>
+          </div>
+          <div class="fact-card">
+            <div class="fact-label">CGPA</div>
+            <div class="fact-value">8.80 / 10</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="section">
+      <div class="section-title">
+        <h2>Education</h2>
+        <div class="title-line"></div>
+      </div>
+
+      <div class="edu-item">
+        <div class="item-header">
+          <span class="item-title">SRM Institute of Science and Technology, Trichy</span>
+          <span class="item-meta">B.Tech · CSE (Honours in FinTech) · 2023 – 2027</span>
+        </div>
+        <div class="item-detail">
+          CGPA: <strong>8.80 / 10</strong>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <div class="item-header">
+          <span class="item-title">Sri Chaitanya Junior College, Vijayawada</span>
+          <span class="item-meta">Class XII · MPC · 2023</span>
+        </div>
+        <div class="item-detail">
+          Percentage: <strong>85.8%</strong> (Board of Intermediate Education, Andhra Pradesh)
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <div class="item-header">
+          <span class="item-title">Viswabharati, Gudivada</span>
+          <span class="item-meta">Class X · MPC, BiPC · 2021</span>
+        </div>
+        <div class="item-detail">
+          Percentage: <strong>100%</strong> (Board of Secondary Education, Andhra Pradesh)
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section">
+      <div class="section-title">
+        <h2>Projects</h2>
+        <div class="title-line"></div>
+      </div>
+
+      <div class="proj-item">
+        <div class="item-header">
+          <span class="item-title">Car Rental System</span>
+          <span class="item-meta">Database Management · PostgreSQL, IntelliJ</span>
+        </div>
+        <div class="item-detail">
+          Designed and implemented a relational database–driven car rental system using
+          <strong>PostgreSQL</strong>, focusing on entity relationships like vehicles,
+          customers, bookings, and invoices. Used IntelliJ IDEA as the development
+          environment and applied <strong>SQL queries</strong> for data retrieval and
+          reporting to support business operations.
+        </div>
+        <div class="badge-row">
+          <span class="badge">PostgreSQL</span>
+          <span class="badge">Database Design</span>
+          <span class="badge">SQL Queries</span>
+          <span class="badge">IntelliJ IDEA</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="section">
+      <div class="section-title">
+        <h2>Certifications</h2>
+        <div class="title-line"></div>
+      </div>
+
+      <div class="cert-item">
+        <div class="item-header">
+          <span class="item-title">Introduction to IoT</span>
+          <span class="item-meta">IIT Bombay · May 2025</span>
+        </div>
+        <div class="item-detail">Fundamentals of Internet of Things architectures and applications.</div>
+      </div>
+
+      <div class="cert-item">
+        <div class="item-header">
+          <span class="item-title">Dynamic Programming</span>
+          <span class="item-meta">University of Colorado Boulder · May 2025</span>
+        </div>
+        <div class="item-detail">Problem-solving using dynamic programming patterns and optimization.</div>
+      </div>
+
+      <div class="cert-item">
+        <div class="item-header">
+          <span class="item-title">DBMS with MySQL</span>
+          <span class="item-meta">Meta · May 2025</span>
+        </div>
+        <div class="item-detail">Relational database concepts, normalization, and SQL with MySQL.</div>
+      </div>
+
+      <div class="cert-item">
+        <div class="item-header">
+          <span class="item-title">FinTech: Foundation and Payments</span>
+          <span class="item-meta">University of Pennsylvania · May 2025</span>
+        </div>
+        <div class="item-detail">Core financial technology concepts with a focus on payment systems.</div>
+      </div>
+
+      <div class="cert-item">
+        <div class="item-header">
+          <span class="item-title">Responsive Web Design</span>
+          <span class="item-meta">freeCodeCamp · April 2025</span>
+        </div>
+        <div class="item-detail">Modern HTML, CSS, and responsive layout techniques.</div>
+      </div>
+
+      <div class="cert-item">
+        <div class="item-header">
+          <span class="item-title">Goldman Sachs Operations Job Simulation</span>
+          <span class="item-meta">Goldman Sachs · July 2025</span>
+        </div>
+        <div class="item-detail">Completed virtual tasks related to operations and process optimization.</div>
+      </div>
+
+      <div class="cert-item">
+        <div class="item-header">
+          <span class="item-title">Goldman Sachs Internal Audit Job Simulation</span>
+          <span class="item-meta">Goldman Sachs · August 2025</span>
+        </div>
+        <div class="item-detail">Exposure to internal audit processes and risk assessment.</div>
+      </div>
+
+      <div class="cert-item">
+        <div class="item-header">
+          <span class="item-title">Investment Manager Simulation</span>
+          <span class="item-meta">Fidelity International · August 2025</span>
+        </div>
+        <div class="item-detail">Simulated investment analysis and portfolio management tasks.</div>
+      </div>
+
+      <div class="cert-item">
+        <div class="item-header">
+          <span class="item-title">Career Essentials in Generative AI</span>
+          <span class="item-meta">Microsoft &amp; LinkedIn · December 2024</span>
+        </div>
+        <div class="item-detail">Introduction to generative AI concepts, tools, and responsible use.</div>
+      </div>
+
+      <div class="cert-item">
+        <div class="item-header">
+          <span class="item-title">Investment Banking Job Simulation</span>
+          <span class="item-meta">JPMorgan · August 2025</span>
+        </div>
+        <div class="item-detail">Virtual simulation of investment banking workflows and analysis.</div>
+      </div>
+
+      <div class="cert-item">
+        <div class="item-header">
+          <span class="item-title">Oracle Cloud Infrastructure Foundations Associate</span>
+          <span class="item-meta">Oracle · March 2026</span>
+        </div>
+        <div class="item-detail">
+          Credential ID: 326766096OCI25FNDCFA · Concepts of OCI, cloud services, and deployment models.
+        </div>
+      </div>
+    </section>
+
+    <!-- Competitions & Tests -->
+    <section class="section">
+      <div class="section-title">
+        <h2>Competitions & Tests</h2>
+        <div class="title-line"></div>
+      </div>
+
+      <div class="comp-item">
+        <div class="item-header">
+          <span class="item-title">Naukri Campus Young Turks</span>
+          <span class="item-meta">Score: 94.54</span>
+        </div>
+        <div class="item-detail">
+          Participated in Naukri Campus Young Turks, demonstrating aptitude and employability skills.
+        </div>
+      </div>
+
+      <div class="test-item">
+        <div class="item-header">
+          <span class="item-title">AWS Academy Cloud Foundations</span>
+          <span class="item-meta">AWS Academy Graduate · January 2025</span>
+        </div>
+        <div class="item-detail">
+          Completed foundational training on AWS cloud concepts, services, security, and pricing.
+        </div>
+      </div>
+
+      <div class="test-item">
+        <div class="item-header">
+          <span class="item-title">AI Prompt Learning</span>
+          <span class="item-meta">Naukri Campus · March 2026</span>
+        </div>
+        <div class="item-detail">
+          Learned prompt-engineering techniques to effectively interact with AI tools.
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills & Extra -->
+    <section class="section">
+      <div class="section-title">
+        <h2>Skills & More</h2>
+        <div class="title-line"></div>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-block">
+          <div class="skill-title">Programming</div>
+          <div class="skill-list">
+            C, C++<br />
+            Problem solving and algorithmic thinking (Dynamic Programming, Data Structures).
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <div class="skill-title">Web & Front-End</div>
+          <div class="skill-list">
+            HTML, CSS, Responsive Web Design<br />
+            Basic front-end development and UI layout.
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <div class="skill-title">Data & Cloud</div>
+          <div class="skill-list">
+            PostgreSQL, MySQL, DBMS concepts<br />
+            Oracle Cloud Infrastructure (Foundations), AWS Cloud basics.
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <div class="skill-title">FinTech & Finance</div>
+          <div class="skill-list">
+            FinTech foundations, payment systems<br />
+            Investment banking & operations (virtual simulations)<br />
+            Personal interest and practice in stock market trading.
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 16px;">
+        <div class="skill-title">Languages</div>
+        <div class="language-row">
+          <span><strong>Telugu</strong> – Native Proficiency</span> |
+          <span><strong>English</strong> – Professional Working Proficiency</span> |
+          <span><strong>German</strong> – Fundamental Proficiency</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 16px;">
+        <div class="skill-title">Extra-Curricular</div>
+        <div class="item-detail">
+          Actively involved in <strong>stock market trading</strong>, applying fundamental and
+          technical analysis to manage a personal portfolio.
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      © <span id="year"></span> Lukka Deepak · Crafted in black &amp; gold
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
